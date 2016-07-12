@@ -5,7 +5,7 @@ A weather server based on Vapor written by Swift
 
 ## Current Environment
 
-**Vapor**: v0.13
+[Vapor](https://github.com/qutheory/vapor): v0.13
 
 ## API
 
