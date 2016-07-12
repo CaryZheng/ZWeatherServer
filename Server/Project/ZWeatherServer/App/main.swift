@@ -12,21 +12,12 @@ app.grouped("api/v1") { api in
     
     // get city list
     api.get("get_city_list") { request in
-        let path = "./Config/city_list.json"
-        let fileBody = try FileUtility.readBytesFromFile(path)
-        
-        return Response(status: .ok, body: .data(fileBody))
+        return try RequestHandler.handleGetCityList(request: request)
     }
     
     // get current weather
     api.get("get_current_weather") { request in
-        guard let cityID = request.data["id"]?.string else {
-            return try ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_PARAM)
-        }
-        
-        let response = try app.client.get("http://api.openweathermap.org/data/2.5/weather", query: ["id": cityID, "appid": OpenWeatherMapAPIKey])
-        
-        return response
+        return try RequestHandler.handleGetCurrentWeather(request: request)
     }
     
 }
