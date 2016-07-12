@@ -10,7 +10,7 @@ class RequestHandler {
     
     static func handleGetCurrentWeather(request: Vapor.Request) throws -> ResponseRepresentable{
         guard let cityID = request.data["id"]?.string else {
-            return try ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_PARAM)
+            return ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_PARAM)
         }
         
         let response = try app.client.get("http://api.openweathermap.org/data/2.5/weather", query: ["id": cityID, "appid": OpenWeatherMapAPIKey])

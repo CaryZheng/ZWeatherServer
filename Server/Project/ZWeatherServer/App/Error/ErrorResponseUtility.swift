@@ -2,7 +2,7 @@ import Vapor
 
 class ErrorResponseUtility {
     
-    static func getErrorResponse(errorType: ErrorResponseType) throws -> Response {
+    static func getErrorResponse(errorType: ErrorResponseType) -> Response {
     
         var errorData: JSON? = nil
         let status = Status.ok
@@ -43,7 +43,13 @@ class ErrorResponseUtility {
                 ])
         }
         
-        return try Response(status: status, json: errorData!)
+        do {
+            return try Response(status: status, json: errorData!)
+        } catch {
+        
+        }
+        
+        return Response()
     }
     
 }
