@@ -9,4 +9,4 @@ A weather server based on Vapor written by Swift
 
 ## API
 
-**Doc**: [Go](Server/Doc/README.md)
+[Doc](Server/Doc/README.md)
