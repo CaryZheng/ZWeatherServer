@@ -12,10 +12,10 @@ class ErrorResponseUtility {
             errorData = JSON([
                 "error": [
                     "code": 4,
-                    "desc": "请求被拒绝",
+                    "desc": "request rejected",
                     "sub_error": [
                         "code": 4001,
-                        "desc": "参数错误"
+                        "desc": "param error"
                     ]
                 ]
                 ])
@@ -23,10 +23,10 @@ class ErrorResponseUtility {
             errorData = JSON([
                 "error": [
                     "code": 5,
-                    "desc": "内部错误",
+                    "desc": "internal error",
                     "sub_error": [
                         "code": 5001,
-                        "desc": "内部数据库服务错误"
+                        "desc": "internal database error"
                     ]
                 ]
                 ])
@@ -34,10 +34,10 @@ class ErrorResponseUtility {
             errorData = JSON([
                 "error": [
                     "code": 5,
-                    "desc": "内部错误",
+                    "desc": "internal error",
                     "sub_error": [
                         "code": 5000,
-                        "desc": "内部未知错误"
+                        "desc": "internal unknown error"
                     ]
                 ]
                 ])
