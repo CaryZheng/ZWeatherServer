@@ -21,7 +21,7 @@ app.grouped("api/v1") { api in
     // get current weather
     api.get("get_current_weather") { request in
         guard let cityID = request.data["id"]?.string else {
-            return ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_PARAM)!
+            return try ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_PARAM)
         }
         
         let response = try app.client.get("http://api.openweathermap.org/data/2.5/weather", query: ["id": cityID, "appid": OpenWeatherMapAPIKey])
