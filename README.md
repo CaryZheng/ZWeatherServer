@@ -13,7 +13,7 @@ A weather server based on Vapor written by Swift
 
 ## API
 
-[Doc](Server/Doc/README.md)
+[Doc](Doc/README.md)
 
 ## Online Demo
 
