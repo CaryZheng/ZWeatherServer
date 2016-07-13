@@ -14,3 +14,9 @@ A weather server based on Vapor written by Swift
 ## API
 
 [Doc](Server/Doc/README.md)
+
+## Online Demo
+
+For example:
+
+* **get city list**: [http://www.carymic.com:8090/api/v1/get_city_list](http://www.carymic.com:8090/api/v1/get_city_list)
