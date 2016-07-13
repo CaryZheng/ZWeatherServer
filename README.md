@@ -2,7 +2,7 @@
 
 ![Logo](Logo.png)
 
-A weather server based on Vapor written by Swift
+A weather server based on [Vapor](https://github.com/qutheory/vapor) written by [Swift](https://github.com/apple/swift)
 
 **Warning: Work in progress**
 
