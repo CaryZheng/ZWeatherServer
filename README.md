@@ -1,6 +1,6 @@
 # ZWeatherServer
 
-![Logo](Logo.svg)
+![Logo](Logo.png)
 
 A weather server based on Vapor written by Swift
 
