@@ -4,6 +4,9 @@ let OpenWeatherMapAPIKey = "5bdc6dd8b4634b5090f6a832bd4054c7"
 
 let app = Application()
 
+// load city list
+try CityListDataManager.getInstance().initData()
+
 app.get("/") { request in
     return "ZWeather Server"
 }
