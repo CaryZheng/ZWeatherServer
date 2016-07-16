@@ -6,19 +6,9 @@ A weather server based on [Vapor](https://github.com/qutheory/vapor) written by 
 
 **Warning: Work in progress**
 
-## Begin
-
-You need to install [swiftenv](https://vapor.readme.io/docs/install-swift-3-swiftenv) and [Vapor Toolbox](https://vapor.readme.io/docs/install-toolbox).
-
-Then
-
-* ```cd ZWeatherServer```
-* ```vapor build```
-* ```vapor run```
-
 ## Current Environment
 
-[Vapor](https://github.com/qutheory/vapor): v0.13
+[Vapor](https://github.com/qutheory/vapor): v0.14
 
 ## Weather Data Source
 
