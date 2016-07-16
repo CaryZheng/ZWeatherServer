@@ -2,7 +2,7 @@ import Vapor
 
 let OpenWeatherMapAPIKey = "5bdc6dd8b4634b5090f6a832bd4054c7"
 
-let app = Application()
+let app = Droplet()
 
 // load city list
 try CityListDataManager.getInstance().initData()
