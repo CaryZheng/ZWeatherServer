@@ -1,4 +1,4 @@
-# get current weather
+# get current weather (by city id)
 
 Get current weather by city id.
 
