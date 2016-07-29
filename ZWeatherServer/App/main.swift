@@ -23,6 +23,11 @@ app.grouped("api/v1") { api in
         return try RequestHandler.handleGetCurrentWeather(request: request)
     }
     
+    // get forecast data
+    api.get("get_forecast_data_5day_3hour") { request in
+        return try RequestHandler.handleGetForecastDataWith5Day3Hour(request: request)
+    }
+    
 }
 
 app.globalMiddleware.append(SampleMiddleware())

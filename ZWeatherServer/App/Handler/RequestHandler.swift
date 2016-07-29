@@ -25,4 +25,15 @@ class RequestHandler {
         
         return ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_PARAM)
     }
+    
+    static func handleGetForecastDataWith5Day3Hour(request: Vapor.Request) throws -> ResponseRepresentable {
+        let cityID = request.data["id"]?.string
+        if let cityID = cityID {
+            let response = try app.client.get(StaticConfigure.getOriginalDataURL()+"/forecast", query: ["id": cityID, "appid": OpenWeatherMapAPIKey])
+            
+            return response
+        }
+        
+        return ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_PARAM)
+    }
 }
