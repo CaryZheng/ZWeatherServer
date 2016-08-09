@@ -8,7 +8,7 @@ A weather server based on [Vapor](https://github.com/qutheory/vapor) written by 
 
 ## Current Environment
 
-[Vapor](https://github.com/qutheory/vapor): v0.14
+[Vapor](https://github.com/qutheory/vapor): v0.16
 
 ## Weather Data Source
 
