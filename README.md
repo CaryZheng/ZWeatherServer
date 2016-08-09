@@ -22,4 +22,4 @@ A weather server based on [Vapor](https://github.com/qutheory/vapor) written by 
 
 For example:
 
-* **get city list**: [http://120.24.195.198:8090/api/v1/get_city_list](http://120.24.195.198:8090/api/v1/get_city_list)
+* **get city list**: [api/v1/get_city_list](http://120.24.195.198:8090/api/v1/get_city_list)
