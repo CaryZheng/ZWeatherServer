@@ -30,8 +30,6 @@ app.group("api/v1") { api in
     
 }
 
-//app.globalMiddleware.append(SampleMiddleware())
-
 let port = app.config["app", "port"].int ?? 80
 
 print("Visit http://localhost:\(port)")
