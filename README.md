@@ -4,8 +4,6 @@
 
 A weather server based on [Vapor](https://github.com/qutheory/vapor) written by [Swift](https://github.com/apple/swift)
 
-**Warning: Work in progress**
-
 ## Current Environment
 
 [Vapor](https://github.com/qutheory/vapor): v0.16
