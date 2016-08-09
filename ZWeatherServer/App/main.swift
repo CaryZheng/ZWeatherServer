@@ -11,7 +11,7 @@ app.get("/") { request in
     return "ZWeather Server"
 }
 
-app.grouped("api/v1") { api in
+app.group("api/v1") { api in
     
     // get city list
     api.get("get_city_list") { request in
@@ -30,7 +30,7 @@ app.grouped("api/v1") { api in
     
 }
 
-app.globalMiddleware.append(SampleMiddleware())
+//app.globalMiddleware.append(SampleMiddleware())
 
 let port = app.config["app", "port"].int ?? 80
 

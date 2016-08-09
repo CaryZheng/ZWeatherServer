@@ -1,13 +1,14 @@
 import Vapor
+import HTTP
 
 class RequestHandler {
-    static func handleGetCityList(request: Vapor.Request) throws -> ResponseRepresentable {
+    static func handleGetCityList(request: Request) throws -> ResponseRepresentable {
         let cityListData = CityListDataManager.getInstance().getCityListData()
         
         return Response(status: .ok, body: .data(cityListData))
 	}
     
-    static func handleGetCurrentWeather(request: Vapor.Request) throws -> ResponseRepresentable {
+    static func handleGetCurrentWeather(request: Request) throws -> ResponseRepresentable {
         let cityID = request.data["id"]?.string
         if let cityID = cityID {
             let response = try app.client.get(StaticConfigure.getOriginalDataURL()+"/weather", query: ["id": cityID, "appid": OpenWeatherMapAPIKey])
@@ -26,7 +27,7 @@ class RequestHandler {
         return ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_PARAM)
     }
     
-    static func handleGetForecastDataWith5Day3Hour(request: Vapor.Request) throws -> ResponseRepresentable {
+    static func handleGetForecastDataWith5Day3Hour(request: Request) throws -> ResponseRepresentable {
         let cityID = request.data["id"]?.string
         if let cityID = cityID {
             let response = try app.client.get(StaticConfigure.getOriginalDataURL()+"/forecast", query: ["id": cityID, "appid": OpenWeatherMapAPIKey])

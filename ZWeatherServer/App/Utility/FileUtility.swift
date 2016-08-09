@@ -1,10 +1,7 @@
 import Foundation
-import libc
-import Vapor
-
 
 extension String {
-    func finish(_ end: String) -> String {
+    public func finished(with end: String) -> String {
         guard !self.hasSuffix(end) else {
             return self
         }
@@ -13,9 +10,9 @@ extension String {
     }
 }
 
+
 class FileUtility {
-	
-    enum Error: ErrorProtocol {
+    enum Error: Swift.Error {
         case CouldNotOpenFile
         case Unreadable
     }
@@ -24,7 +21,7 @@ class FileUtility {
         guard let data = NSData(contentsOfFile: path) else {
             throw Error.CouldNotOpenFile
         }
-        return data.byteArray ?? []
+        return data.byteArray
     }
     
     static func fileAtPath(_ path: String) -> (exists: Bool, isDirectory: Bool) {
@@ -78,7 +75,7 @@ class FileUtility {
         var gt = glob_t()
         defer { globfree(&gt) }
         
-        let path = try self.expandPath(path).finish("/")
+        let path = try self.expandPath(path).finished(with: "/")
         let pattern = strdup(path + "{*,.*}")
         
         switch glob(pattern, GLOB_MARK | GLOB_NOSORT | GLOB_BRACE, nil, &gt) {
