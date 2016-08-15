@@ -37,4 +37,25 @@ class RequestHandler {
         
         return ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_PARAM)
     }
+    
+    static func isAccountExisted(request: Request) throws -> ResponseRepresentable {
+        
+        let name = request.data["name"]?.string
+        if let name = name {
+            let result = try DBManager.getInstance().isAccountExisted(name: name)
+            if result.isOK {
+                // account existed
+                let responseData = try JSON(node: [
+                    "uid": result.userID!
+                    ])
+                
+                return try Response(status: .ok, json: responseData)
+            } else {
+                // account not existed
+                return ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_ACCOUNT_NO_EXISTED)
+            }
+        }
+        
+        return ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_PARAM)
+    }
 }
