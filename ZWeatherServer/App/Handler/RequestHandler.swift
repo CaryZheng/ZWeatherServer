@@ -46,13 +46,18 @@ class RequestHandler {
             if result.isOK {
                 // account existed
                 let responseData = try JSON(node: [
+                    "is_existed": true,
                     "uid": result.userID!
                     ])
                 
                 return try Response(status: .ok, json: responseData)
             } else {
                 // account not existed
-                return ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_ACCOUNT_NO_EXISTED)
+                let responseData = try JSON(node: [
+                    "is_existed": false
+                    ])
+                
+                return try Response(status: .ok, json: responseData)
             }
         }
         
