@@ -2,6 +2,8 @@
 
 ![Logo](Logo.png)
 
+[![Build Status](https://travis-ci.org/CaryZheng/ZWeatherServer.svg?branch=master)](https://travis-ci.org/CaryZheng/ZWeatherServer)
+
 A weather server based on [Vapor](https://github.com/qutheory/vapor) written by [Swift](https://github.com/apple/swift)
 
 ## Current Environment
