@@ -11,36 +11,58 @@ class ErrorResponseUtility {
             switch errorType {
             case ErrorResponseType.ERROR_PARAM:
                 errorData = try JSON(node: [
-                    "error": try JSON([
+                    "error": [
                         "code": 4,
                         "desc": "request rejected",
-                        "sub_error": try JSON([
+                        "sub_error": [
                             "code": 4001,
                             "desc": "param error"
-                            ])
-                        ])
+                            ]
+                        ]
                     ])
             case ErrorResponseType.ERROR_INTERNAL:
                 errorData = try JSON(node: [
-                    "error": JSON([
+                    "error": [
                         "code": 5,
                         "desc": "internal error",
-                        "sub_error": JSON([
+                        "sub_error": [
                             "code": 5001,
                             "desc": "internal database error"
-                            ])
-                        ])
+                            ]
+                        ]
+                    ])
+            case ErrorResponseType.ERROR_ACCOUNT_NO_EXISTED:
+                errorData = try JSON(node: [
+                    "error": [
+                        "code": 4,
+                        "desc": "request rejected",
+                        "sub_error": [
+                            "code": 4002,
+                            "desc": "account no existed"
+                        ]
+                    ]
+                    ])
+            case ErrorResponseType.ERROR_ACCOUNT_OR_PWD:
+                errorData = try JSON(node: [
+                    "error": [
+                        "code": 4,
+                        "desc": "request rejected",
+                        "sub_error": [
+                            "code": 4003,
+                            "desc": "account or password error"
+                        ]
+                    ]
                     ])
             default:
                 errorData = try JSON(node: [
-                    "error": JSON([
+                    "error": [
                         "code": 5,
                         "desc": "internal error",
-                        "sub_error": JSON([
+                        "sub_error": [
                             "code": 5000,
                             "desc": "internal unknown error"
-                            ])
-                        ])
+                            ]
+                        ]
                     ])
             }
             

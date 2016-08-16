@@ -28,6 +28,10 @@ app.group("api/v1") { api in
         return try RequestHandler.handleGetForecastDataWith5Day3Hour(request: request)
     }
     
+    // is account existed
+    api.get("is_account_existed") { request in
+        return try RequestHandler.isAccountExisted(request: request)
+    }
 }
 
 let port = app.config["app", "port"].int ?? 80
