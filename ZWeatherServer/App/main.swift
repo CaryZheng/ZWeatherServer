@@ -32,7 +32,7 @@ app.group("api/v1") { api in
     }
 }
 
-let port = app.config["servers", "config", "port"].int
+let port = app.config["servers", "default", "port"].int
 print("Visit http://localhost:\(port)")
 
 app.serve()
