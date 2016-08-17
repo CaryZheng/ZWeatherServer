@@ -59,4 +59,41 @@ class DBManager {
         return (false, nil)
     }
     
+    func signUp(name: String, pwd: String) throws -> (isOK: Bool, userID: Int?) {
+        do {
+            let accountResult = try isAccountExisted(name: name)
+            if accountResult.isOK {
+                return (false, nil)
+            }
+            
+            var results = try mysql.execute("SELECT * FROM user ORDER BY user_id DESC LIMIT 1")
+            print("signUp results = \(results)")
+            if results.count > 0 {
+                
+                guard let value = results[0]["user_id"] else {
+                    throw ZException.DB_DATA_EXCEPTION
+                }
+                guard case .number(.int(let lastUserID)) = value else {
+                    throw ZException.DB_DATA_EXCEPTION
+                }
+                
+                let userID = lastUserID + 1
+                print("userID = \(userID)")
+                
+                results = try mysql.execute("INSERT INTO user(user_id, name, pwd) VALUES(\(userID), \"\(name)\", \"\(pwd)\")")
+                
+                if 0 == results.count {
+                    // sign up success
+                    return (true, userID)
+                } else {
+                    // sign up fail
+                    return (false, nil)
+                }
+            }
+        } catch {
+            throw ZException.DB_QUERY_EXCEPTION
+        }
+        
+        return (false, nil)
+    }
 }

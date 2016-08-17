@@ -20,17 +20,6 @@ class ErrorResponseUtility {
                             ]
                         ]
                     ])
-            case ErrorResponseType.ERROR_INTERNAL:
-                errorData = try JSON(node: [
-                    "error": [
-                        "code": 5,
-                        "desc": "internal error",
-                        "sub_error": [
-                            "code": 5001,
-                            "desc": "internal database error"
-                            ]
-                        ]
-                    ])
             case ErrorResponseType.ERROR_ACCOUNT_NO_EXISTED:
                 errorData = try JSON(node: [
                     "error": [
@@ -42,14 +31,36 @@ class ErrorResponseUtility {
                         ]
                     ]
                     ])
-            case ErrorResponseType.ERROR_ACCOUNT_OR_PWD:
+            case ErrorResponseType.ERROR_ACCOUNT_EXISTED:
                 errorData = try JSON(node: [
                     "error": [
                         "code": 4,
                         "desc": "request rejected",
                         "sub_error": [
                             "code": 4003,
+                            "desc": "account has existed"
+                        ]
+                    ]
+                    ])
+            case ErrorResponseType.ERROR_ACCOUNT_OR_PWD:
+                errorData = try JSON(node: [
+                    "error": [
+                        "code": 4,
+                        "desc": "request rejected",
+                        "sub_error": [
+                            "code": 4004,
                             "desc": "account or password error"
+                        ]
+                    ]
+                    ])
+            case ErrorResponseType.ERROR_INTERNAL:
+                errorData = try JSON(node: [
+                    "error": [
+                        "code": 5,
+                        "desc": "internal error",
+                        "sub_error": [
+                            "code": 5001,
+                            "desc": "internal database error"
                         ]
                     ]
                     ])

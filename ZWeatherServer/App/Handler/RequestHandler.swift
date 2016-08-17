@@ -65,4 +65,26 @@ class RequestHandler {
         
         return ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_PARAM)
     }
+    
+    static func signUp(request: Request) throws -> ResponseRepresentable {
+        let name = request.data["name"].string
+        let pwd = request.data["pwd"].string
+        
+        if !StringUtility.isEmpty(name) && !StringUtility.isEmpty(pwd) {
+            let result = try DBManager.getInstance().signUp(name: name!, pwd: pwd!)
+            if result.isOK {
+                // sign up success
+                let responseData = try JSON(node: [
+                    "uid": result.userID!
+                    ])
+                
+                return try Response(status: .ok, json: responseData)
+            } else {
+                // account has existed
+                return ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_ACCOUNT_EXISTED)
+            }
+        }
+        
+        return ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_PARAM)
+    }
 }

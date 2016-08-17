@@ -30,6 +30,11 @@ app.group("api/v1") { api in
     api.get("is_account_existed") { request in
         return try RequestHandler.isAccountExisted(request: request)
     }
+    
+    // sign up
+    api.post("sign_up") { request in
+        return try RequestHandler.signUp(request: request)
+    }
 }
 
 let port = app.config["servers", "default", "port"].int
