@@ -1,6 +1,8 @@
 import Vapor
 import HTTP
 
+let OpenWeatherMapAPIKey = app.config["servers", "config", "open_weather_map_api_key"].string!
+
 class RequestHandler {
     static func handleGetCityList(request: Request) throws -> ResponseRepresentable {
         let cityListData = CityListDataManager.getInstance().getCityListData()

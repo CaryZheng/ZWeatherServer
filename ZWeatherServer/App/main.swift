@@ -1,7 +1,5 @@
 import Vapor
 
-let OpenWeatherMapAPIKey = "5bdc6dd8b4634b5090f6a832bd4054c7"
-
 let app = Droplet()
 
 // load city list
@@ -34,7 +32,7 @@ app.group("api/v1") { api in
     }
 }
 
-let port = app.config["servers", "http", "port"].int
-
+let port = app.config["servers", "config", "port"].int
 print("Visit http://localhost:\(port)")
+
 app.serve()

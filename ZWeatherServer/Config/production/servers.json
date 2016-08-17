@@ -1,7 +1,8 @@
 {
-	"http": {
+	"config": {
 		"port": 8080,
 		"host": "0.0.0.0",
-		"securityLayer": "none"
+        
+        "open_weather_map_api_key": "5bdc6dd8b4634b5090f6a832bd4054c7"
 	}
 }
