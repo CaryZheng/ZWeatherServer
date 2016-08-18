@@ -68,8 +68,9 @@ class DBManager {
             
             var results = try mysql.execute("SELECT * FROM user ORDER BY user_id DESC LIMIT 1")
             print("signUp results = \(results)")
+            
+            var userID = 1
             if results.count > 0 {
-                
                 guard let value = results[0]["user_id"] else {
                     throw ZException.DB_DATA_EXCEPTION
                 }
@@ -77,18 +78,19 @@ class DBManager {
                     throw ZException.DB_DATA_EXCEPTION
                 }
                 
-                let userID = lastUserID + 1
-                print("userID = \(userID)")
-                
-                results = try mysql.execute("INSERT INTO user(user_id, name, pwd) VALUES(\(userID), \"\(name)\", \"\(pwd)\")")
-                
-                if 0 == results.count {
-                    // sign up success
-                    return (true, userID)
-                } else {
-                    // sign up fail
-                    return (false, nil)
-                }
+                userID = lastUserID + 1
+            }
+            
+            print("userID = \(userID)")
+            
+            results = try mysql.execute("INSERT INTO user(user_id, name, pwd) VALUES(\(userID), \"\(name)\", \"\(pwd)\")")
+            
+            if 0 == results.count {
+                // sign up success
+                return (true, userID)
+            } else {
+                // sign up fail
+                return (false, nil)
             }
         } catch {
             throw ZException.DB_QUERY_EXCEPTION
