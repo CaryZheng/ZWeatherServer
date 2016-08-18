@@ -192,4 +192,24 @@ class DBManager {
         
         return false
     }
+    
+    func getUserInfo(userID: Int) throws -> (isOK: Bool, name: String?) {
+        do {
+            let results = try mysql.execute("SELECT name FROM user WHERE user_id=\"\(userID)\";")
+            if results.count > 0 {
+                guard let nameValue = results[0]["name"] else {
+                    throw ZException.DB_DATA_EXCEPTION
+                }
+                guard case .string(let localName) = nameValue else {
+                    throw ZException.DB_DATA_EXCEPTION
+                }
+                
+                return (true, localName)
+            }
+        } catch {
+            throw ZException.DB_QUERY_EXCEPTION
+        }
+        
+        return (false, nil)
+    }
 }

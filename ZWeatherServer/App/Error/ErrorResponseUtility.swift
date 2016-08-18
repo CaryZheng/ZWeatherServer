@@ -9,6 +9,18 @@ class ErrorResponseUtility {
             let status = Status.ok
             
             switch errorType {
+            case ErrorResponseType.ERROR_AUTH_TOKEN_INVALID:
+                errorData = try JSON(node: [
+                    "error": [
+                        "code": 1,
+                        "desc": "auth fail",
+                        "sub_error": [
+                            "code": 1001,
+                            "desc": "auth token invalid"
+                        ]
+                    ]
+                    ])
+                
             case ErrorResponseType.ERROR_PARAM:
                 errorData = try JSON(node: [
                     "error": [
@@ -53,6 +65,7 @@ class ErrorResponseUtility {
                         ]
                     ]
                     ])
+                
             case ErrorResponseType.ERROR_INTERNAL:
                 errorData = try JSON(node: [
                     "error": [

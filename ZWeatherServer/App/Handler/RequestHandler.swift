@@ -120,4 +120,29 @@ class RequestHandler {
         
         return ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_PARAM)
     }
+    
+    static func getUserInfo(request: Request) throws -> ResponseRepresentable {
+        let userID = request.data["user_id"]?.int
+        if nil == userID {
+            return ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_PARAM)
+        }
+        
+        let token = request.headers["Authorization"]
+        let authTokenResult = try RequestHandlerUtility.handleAuthToken(userID: userID!, token: token)
+        if !authTokenResult.isOK {
+            return authTokenResult.response!
+        }
+        
+        let result = try DBManager.getInstance().getUserInfo(userID: userID!)
+        if result.isOK {
+            let responseData = try JSON(node: [
+                "uid": userID!,
+                "name": result.name!
+                ])
+            
+            return try Response(status: .ok, json: responseData)
+        } else {
+            return ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_INTERNAL)
+        }
+    }
 }
