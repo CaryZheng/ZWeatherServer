@@ -87,4 +87,37 @@ class RequestHandler {
         
         return ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_PARAM)
     }
+    
+    static func signIn(request: Request) throws -> ResponseRepresentable {
+        let name = request.data["name"].string
+        let pwd = request.data["pwd"].string
+        
+        if !StringUtility.isEmpty(name) && !StringUtility.isEmpty(pwd) {
+            let result = try DBManager.getInstance().signIn(name: name!, pwd: pwd!)
+            if result.isOK {
+                // sign in success
+                let userID = result.userID!
+                let responseData = try JSON(node: [
+                    "uid": userID
+                    ])
+                
+                let token = StringUtility.generateSignInToken(userID: userID)
+                
+                let tokenResult = try DBManager.getInstance().updateSignInToken(userID: userID, token: token)
+                if !tokenResult {
+                    return ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_INTERNAL)
+                }
+                
+                let response = try Response(status: .ok, json: responseData)
+                response.headers["Authorization"] = token
+                
+                return response
+            } else {
+                // sign in fail
+                return ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_ACCOUNT_OR_PWD)
+            }
+        }
+        
+        return ErrorResponseUtility.getErrorResponse(errorType: ErrorResponseType.ERROR_PARAM)
+    }
 }

@@ -96,4 +96,100 @@ class DBManager {
         
         return (false, nil)
     }
+    
+    func signIn(name: String, pwd: String) throws -> (isOK: Bool, userID: Int?) {
+        do {
+            let accountResult = try isAccountExisted(name: name)
+            if !accountResult.isOK {
+                return (false, nil)
+            }
+            
+            var results = try mysql.execute("SELECT * FROM user WHERE name=\"\(name)\" AND pwd=\"\(pwd)\"")
+            print("signIn results = \(results)")
+            if results.count > 0 {
+                guard let userIDValue = results[0]["user_id"] else {
+                    throw ZException.DB_DATA_EXCEPTION
+                }
+                guard case .number(.int(let userID)) = userIDValue else {
+                    throw ZException.DB_DATA_EXCEPTION
+                }
+                
+                guard let nameValue = results[0]["name"] else {
+                    throw ZException.DB_DATA_EXCEPTION
+                }
+                guard case .string(let localName) = nameValue else {
+                    throw ZException.DB_DATA_EXCEPTION
+                }
+                
+                guard let pwdValue = results[0]["pwd"] else {
+                    throw ZException.DB_DATA_EXCEPTION
+                }
+                guard case .string(let localPwd) = pwdValue else {
+                    throw ZException.DB_DATA_EXCEPTION
+                }
+                
+                print("userID = \(userID)")
+                
+                if name == localName
+                    && pwd == localPwd {
+                    return (true, userID)
+                } else {
+                    return (false, nil)
+                }
+            }
+        } catch {
+            throw ZException.DB_QUERY_EXCEPTION
+        }
+        
+        return (false, nil)
+    }
+    
+    func updateSignInToken(userID: Int, token: String) throws -> Bool {
+        do {
+            var results = try mysql.execute("SELECT * FROM sign_in WHERE user_id=\(userID);")
+            if 0 == results.count {
+                // insert
+                results = try mysql.execute("INSERT INTO sign_in(user_id, token) VALUES(\(userID), \"\(token)\");")
+                if 0 == results.count {
+                    return true
+                }
+            } else {
+                // update
+                results = try mysql.execute("UPDATE sign_in SET token=\"\(token)\" WHERE user_id=\(userID);")
+                if 0 == results.count {
+                    return true
+                }
+            }
+        } catch {
+            throw ZException.DB_QUERY_EXCEPTION
+        }
+        
+        return false
+    }
+    
+    func isSignInTokenValid(userID: Int, token: String) throws -> Bool {
+        do {
+            let results = try mysql.execute("SELECT token FROM sign_in where user_id=\"\(userID)\";")
+            print("isSignInTokenValid results = \(results)")
+            if results.count > 0 {
+                
+                guard let tokenValue = results[0]["token"] else {
+                    throw ZException.DB_DATA_EXCEPTION
+                }
+                guard case .string(let localToken) = tokenValue else {
+                    throw ZException.DB_DATA_EXCEPTION
+                }
+                
+                if localToken == token {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        } catch {
+            throw ZException.DB_QUERY_EXCEPTION
+        }
+        
+        return false
+    }
 }

@@ -35,6 +35,11 @@ app.group("api/v1") { api in
     api.post("sign_up") { request in
         return try RequestHandler.signUp(request: request)
     }
+    
+    // sign in
+    api.post("sign_in") { request in
+        return try RequestHandler.signIn(request: request)
+    }
 }
 
 let port = app.config["servers", "default", "port"].int
