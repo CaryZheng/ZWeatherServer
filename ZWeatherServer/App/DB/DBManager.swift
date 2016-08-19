@@ -95,8 +95,6 @@ class DBManager {
         } catch {
             throw ZException.DB_QUERY_EXCEPTION
         }
-        
-        return (false, nil)
     }
     
     func signIn(name: String, pwd: String) throws -> (isOK: Bool, userID: Int?) {
