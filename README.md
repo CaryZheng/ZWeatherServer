@@ -42,7 +42,7 @@ sudo service mysql start
 MySQL Script
 
 ```
-source <project path>/Script/zweather_msql_script.sql
+source <project path>/Script/zweather_mysql_script.sql
 ```
 
 
