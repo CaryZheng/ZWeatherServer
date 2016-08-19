@@ -1,7 +1,7 @@
 {
-	"default": {
+    "default": {
+        "version": "0.3",
 		"port": 8080,
-        
         "open_weather_map_api_key": "5bdc6dd8b4634b5090f6a832bd4054c7"
 	}
 }
