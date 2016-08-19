@@ -8,7 +8,11 @@ A weather server based on [Vapor](https://github.com/qutheory/vapor) written by 
 
 ## Current Environment
 
-[Vapor](https://github.com/qutheory/vapor): v0.16
+**OS**: macOS or Ubuntu
+
+**Database**: [MySQL](https://www.mysql.com)
+
+**Framework**: [Vapor v0.16](https://github.com/qutheory/vapor)
 
 ## Weather Data Source
 
