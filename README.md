@@ -48,9 +48,8 @@ source <project path>/Script/zweather_msql_script.sql
 
 ### Building
 
-Enter ZWeatherServer project directory:
 ```
-ZWeatherServer/ZWeatherServer
+cd <project path>/ZWeatherServer
 ```
 
 **macOS**
