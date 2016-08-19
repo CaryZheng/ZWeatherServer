@@ -32,7 +32,7 @@ Sign in account.
 
 **Warning**: Auth token will be stored with key: ```Authorization``` in ```Headers```.
 
-like ```Authorization``` : ```dd28cfa0b577055666e68e4bba9e5eecdf045ed77d554db701ec5e051dcfeba190bb31b196daaa5ff5468d70a8f82a531c112c9a23416c6bc1568da7b62bb3ac```
+```Authorization: dd28cfa0b577055666e68e4bba9e5eecdf045ed77d554db701ec5e051dcfeba190bb31b196daaa5ff5468d70a8f82a531c112c9a23416c6bc1568da7b62bb3ac```
 
 ### Failure
 
