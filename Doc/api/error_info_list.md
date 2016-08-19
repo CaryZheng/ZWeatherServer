@@ -13,7 +13,7 @@
         },
         {
             "code": 5,
-            "zh-cn": "internal error"
+            "desc": "internal error"
         }
     ],
     
@@ -29,6 +29,10 @@
         {
             "code": 4002,
             "desc": "account no existed"
+        },
+        {
+            "code": 4003,
+            "desc": "account has existed"
         },
         {
             "code": 4004,
