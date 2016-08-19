@@ -22,7 +22,7 @@ A weather server based on [Vapor](https://github.com/qutheory/vapor) written by 
 
 ### Install MySQL
 
-**macOS**
+macOS
 
 ```
 brew install mysql
@@ -30,7 +30,7 @@ brew link mysql
 mysql.server start
 ```
 
-**Linux**
+Linux
 
 ```
 sudo apt-get update
@@ -39,7 +39,7 @@ sudo mysql_install_db
 sudo service mysql start
 ```
 
-**MySQL Script**
+MySQL Script
 
 ```
 source <project path>/Script/zweather_msql_script.sql
@@ -52,13 +52,13 @@ source <project path>/Script/zweather_msql_script.sql
 cd <project path>/ZWeatherServer
 ```
 
-**macOS**
+macOS
 
 ```
 swift build -Xswiftc -I/usr/local/include/mysql -Xlinker -L/usr/local/lib
 ```
 
-**Linux**
+Linux
 
 ```
 swift build -Xswiftc -DNOJSON
@@ -74,3 +74,4 @@ swift build -Xswiftc -DNOJSON
 For example:
 
 * **get city list**: [api/v1/get_city_list](http://120.24.195.198/api/v1/get_city_list)
+* **get current weather by city id**: [api/v1/get_current_weather?id=1796236](http://120.24.195.198/api/v1/get_current_weather?id=1796236)
