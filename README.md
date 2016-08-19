@@ -18,6 +18,60 @@ A weather server based on [Vapor](https://github.com/qutheory/vapor) written by 
 
 [OpenWeatherMap](http://openweathermap.org/api)
 
+## Begin
+
+### Install MySQL
+
+**macOS**
+
+```
+brew install mysql
+brew link mysql
+mysql.server start
+```
+
+**Linux**
+
+```
+sudo apt-get update
+sudo apt-get install -y mysql-server libmysqlclient-dev
+sudo mysql_install_db
+sudo service mysql start
+```
+
+**MySQL Script**
+
+Path:
+```
+Script/zweather_mysql_script.sql
+```
+
+Command:
+```
+source [Your path]/Script/zweather_msql_script.sql
+```
+
+
+### Building
+
+Enter ZWeatherServer project directory:
+```
+ZWeatherServer/ZWeatherServer
+```
+
+**macOS**
+
+```
+swift build -Xswiftc -I/usr/local/include/mysql -Xlinker -L/usr/local/lib
+```
+
+**Linux**
+
+```
+swift build -Xswiftc -DNOJSON
+```
+
+
 ## API
 
 [Doc](Doc/README.md)
