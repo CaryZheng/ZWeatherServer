@@ -11,3 +11,9 @@
 * [sign_up](api/sign_up.md)
 * [is_account_existed](api/is_account_existed.md)
 * [get_user_info](api/get_user_info.md)
+
+
+## Error
+
+* [error info format](api/error_info_format.md)
+* [error info list](api/error_info_list.md)
