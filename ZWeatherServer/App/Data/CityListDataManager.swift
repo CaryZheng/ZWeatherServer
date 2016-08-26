@@ -10,14 +10,13 @@ class CityListDataManager {
         return mInstance
     }
     
-    private var mCityListData: [UInt8]!
+    private var mCityListData: String = ""
     
     func initData() throws {
-        let path = "./Config/city_list.json"
-        mCityListData = try FileUtility.readBytesFromFile(path)
+        mCityListData = try String(contentsOfFile: FileUtility.getCityListFullPath())
     }
     
-    func getCityListData() -> [UInt8] {
+    func getCityListData() -> String {
         return mCityListData
     }
 	

@@ -6,8 +6,9 @@ let OpenWeatherMapAPIKey = app.config["servers", "default", "open_weather_map_ap
 class RequestHandler {
     static func handleGetCityList(request: Request) throws -> ResponseRepresentable {
         let cityListData = CityListDataManager.getInstance().getCityListData()
+        let json = try JSON(bytes: cityListData.bytes)
         
-        return Response(status: .ok, body: .data(cityListData))
+        return try Response(status: .ok, json: json)
 	}
     
     static func handleGetCurrentWeather(request: Request) throws -> ResponseRepresentable {
