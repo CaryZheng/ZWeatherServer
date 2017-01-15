@@ -13,7 +13,7 @@ class CityListDataManager {
     private var mCityListData: String = ""
     
     func initData() throws {
-        mCityListData = try String(contentsOfFile: FileUtility.getCityListFullPath())
+        mCityListData = try String(contentsOfFile: FileUtility.getCityListFullPath(), encoding: .utf8)
     }
     
     func getCityListData() -> String {
