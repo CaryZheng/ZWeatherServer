@@ -47,10 +47,10 @@ app.group("api/v1") { api in
     }
 }
 
-let port = app.config["servers", "default", "port"].int
+let port = app.config["servers", "default", "port"]?.int
 print("Visit http://localhost:\(port)")
 
-let version = app.config["servers", "default", "version"].string
+let version = app.config["servers", "default", "version"]?.string
 print("ZWeather version: \(version)")
 
-app.serve()
+app.run()

@@ -27,6 +27,6 @@ class StringUtility {
         let timestamp = Date().timeIntervalSince1970
         let tokenFormat = "\(userID)" + "_" + "\(timestamp)"
         
-        return SHA2Hasher(variant: .sha512).make(tokenFormat)
+        return tokenFormat
     }
 }

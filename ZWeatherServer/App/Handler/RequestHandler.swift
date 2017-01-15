@@ -1,7 +1,7 @@
 import Vapor
 import HTTP
 
-let OpenWeatherMapAPIKey = app.config["servers", "default", "open_weather_map_api_key"].string!
+let OpenWeatherMapAPIKey = app.config["servers", "default", "open_weather_map_api_key"]!.string!
 
 class RequestHandler {
     static func handleGetCityList(request: Request) throws -> ResponseRepresentable {
@@ -68,8 +68,8 @@ class RequestHandler {
     }
     
     static func signUp(request: Request) throws -> ResponseRepresentable {
-        let name = request.data["name"].string
-        let pwd = request.data["pwd"].string
+        let name = request.data["name"]?.string
+        let pwd = request.data["pwd"]?.string
         
         if !StringUtility.isEmpty(name) && !StringUtility.isEmpty(pwd) {
             let result = try DBManager.getInstance().signUp(name: name!, pwd: pwd!)
@@ -90,8 +90,8 @@ class RequestHandler {
     }
     
     static func signIn(request: Request) throws -> ResponseRepresentable {
-        let name = request.data["name"].string
-        let pwd = request.data["pwd"].string
+        let name = request.data["name"]?.string
+        let pwd = request.data["pwd"]?.string
         
         if !StringUtility.isEmpty(name) && !StringUtility.isEmpty(pwd) {
             let result = try DBManager.getInstance().signIn(name: name!, pwd: pwd!)
