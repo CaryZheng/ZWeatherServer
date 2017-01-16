@@ -1,5 +1,5 @@
 import Foundation
-import Vapor
+import Hash
 
 class StringUtility {
     
@@ -27,6 +27,12 @@ class StringUtility {
         let timestamp = Date().timeIntervalSince1970
         let tokenFormat = "\(userID)" + "_" + "\(timestamp)"
         
-        return tokenFormat
+        do {
+            return try Hash.make(.sha512, tokenFormat.makeBytes()).base64String
+        } catch let error {
+            print("generateSignInToken error = \(error) ")
+        }
+        
+        return ""
     }
 }
