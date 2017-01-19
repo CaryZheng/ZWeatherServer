@@ -12,7 +12,7 @@ A weather server based on [Vapor](https://github.com/qutheory/vapor) written by 
 
 **Database**: [MySQL](https://www.mysql.com)
 
-**Framework**: [Vapor v0.16](https://github.com/qutheory/vapor)
+**Framework**: [Vapor v1.0+](https://github.com/qutheory/vapor)
 
 ## Weather Data Source
 
